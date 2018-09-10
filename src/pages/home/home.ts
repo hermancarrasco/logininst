@@ -40,6 +40,8 @@ const options: ThemeableBrowserOptions = {
       align: 'left',
       event: 'closePressed'
   },
+  clearcache:true
+  ,
   backButtonCanClose: true
 };
 //http://172.20.10.4
