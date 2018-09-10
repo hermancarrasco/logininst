@@ -39,8 +39,9 @@ export class LogininstProvider {
   }
 
   login(token:string){
-
-    if (token=="ze/%3Fclient_id%3Dcd24c2f3f93a4099a35a546ad9e4e60d%26redirect_uri%3Dhttps%3A//hermancarrasco.auth0.com/login/callback%26response_type%3Dtoken") {
+    let error1="thorize%2F%3Fclient_id%3Dcd24c2f3f93a4099a35a546ad9e4e60d%26redirect_uri%3Dhttps%3A%2F%2Fhermancarrasco.auth0.com%2Flogin%2Fcallback%26response_type%3Dtoken";
+    let error2="ze/%3Fclient_id%3Dcd24c2f3f93a4099a35a546ad9e4e60d%26redirect_uri%3Dhttps%3A//hermancarrasco.auth0.com/login/callback%26response_type%3Dtoken";
+    if (token==error1 || token==error2) {
       this.zone.run(() => {
         this.error="por favor vuelva a iniciar."
       });
