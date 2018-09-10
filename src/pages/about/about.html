@@ -1,11 +1,57 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Publicaciones
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
+    <div *ngIf="!login.logueado" text-center>
+        <p><strong>Inicia sesión para ver esta sección.</strong></p>
+    </div>
+    <div *ngIf="login.fotos">
+        <ion-card *ngFor="let foto of login.fotos">
+
+            <ion-item>
+                <ion-avatar item-start>
+                    <img [src]="foto.user.profile_picture">
+                </ion-avatar>
+                <h2>{{foto.user.username}}</h2>
+
+
+            </ion-item>
+
+            <img [src]="foto.images.standard_resolution.url">
+
+            <ion-card-content *ngIf="foto.caption">
+                <p>{{foto.caption.text}}</p>
+                <hr>
+                <p *ngIf="foto.location">Ubicacion: <strong>{{foto.location.name}}</strong></p>
+            </ion-card-content>
+
+            <ion-row>
+                <ion-col>
+                    <button ion-button icon-start clear small>
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>{{foto.likes.count}} Likes</div>
+            </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button icon-start clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>{{foto.comments.count}} Comments</div>
+            </button>
+                </ion-col>
+                <ion-col center text-center>
+                    <ion-note>
+                        11h ago
+                    </ion-note>
+                </ion-col>
+            </ion-row>
+
+        </ion-card>
+    </div>
 
 </ion-content>

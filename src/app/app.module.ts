@@ -11,17 +11,33 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ThemeableBrowser } from '@ionic-native/themeable-browser';
+import { LogininstProvider } from '../providers/logininst/logininst';
+import { HttpClientModule } from "@angular/common/http";
+import { IonicStorageModule } from '@ionic/storage';
+
+import { Camera } from '@ionic-native/camera';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Instagram } from '@ionic-native/instagram';
+import { LoginPage } from '../pages/login/login';
+
+
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +45,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    InAppBrowser,
+    ThemeableBrowser,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LogininstProvider,
+    Camera,
+    Diagnostic,
+    ImagePicker,
+    Instagram
   ]
 })
 export class AppModule {}

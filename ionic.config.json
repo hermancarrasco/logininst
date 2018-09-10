@@ -1,5 +1,7 @@
 {
   "name": "logininst",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

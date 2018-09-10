@@ -1,17 +1,67 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title *ngIf="logService.user"> {{logService.user.data["username"]}} </ion-title>
+        <ion-title *ngIf="!logService.user"> Iniciar Sesión </ion-title>
+        <ion-buttons end>
+            <button ion-button *ngIf="logService.user" color="danger" (click)="logService.cerrarSesion()">                       
+                    Cerrar Sesión
+                </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+    <!-- logueado:{{logService.logueado}} -->
+    <div *ngIf="!logService.user">
+        <img src="assets/imgs/lock.jpg">
+        <button ion-button block *ngIf="!logService.user" (click)="ira()">Login</button>
+        <p *ngIf="logService.error" text-center><strong>{{logService.error}}</strong></p>
+    </div>
+    <ng-template [ngIf]="logService.user">
+        <ion-card *ngIf="logService.user">
+            <img [src]="logService.user['data'].profile_picture">
+            <ion-card-content>
+                <ion-card-title>{{ logService.user["data"].username }}</ion-card-title>
+
+                <ion-list>
+                    <ion-item>
+                        Usuario:
+                        <p>{{logService.user.data["username"]}}</p>
+                    </ion-item>
+                    <ion-item>
+                        Nombre:
+                        <p>{{logService.user.data["full_name"]}}</p>
+                    </ion-item>
+                    <ion-item>
+                        Sitio Web:
+                        <p>{{ logService.user["data"].website}}</p>
+                    </ion-item>
+
+                    <ion-item>
+                        Biografia:
+                        <p> {{logService.user["data"].bio}}</p>
+                    </ion-item>
+                    <ion-item>
+                        Publicaciones:
+                        <p>{{ logService.user["data"].counts.media }}</p>
+                    </ion-item>
+                    <ion-item>
+                        Seguidores:
+                        <p>{{ logService.user["data"].counts.followed_by }}</p>
+                    </ion-item>
+                    <ion-item>
+                        Seguidos:
+                        <p>{{ logService.user["data"].counts.follows }}</p>
+                    </ion-item>
+
+                </ion-list>
+
+
+            </ion-card-content>
+        </ion-card>
+    </ng-template>
+    <button ion-button outline block color="primary" *ngIf="logService.user" (click)="subirFoto()">Subir Imagen</button>
+
+    <!-- <p> token: {{logService.accessToken}} </p> -->
+    <!-- <pre>datos: {{logService.user | json}} </pre> -->
 </ion-content>
